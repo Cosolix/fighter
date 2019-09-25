@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private int jumpCount = 0;
 
     PlayerController pc;
+    public Character selected; // TODO: character selection
 
     private void Start()
     {
