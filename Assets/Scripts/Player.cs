@@ -5,9 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerController))]
 public class Player : MonoBehaviour
 {
-    public float speed = 1;
-    public float jumpForce = 200;
-    public int jumps = 2;
+    public float speed = 0.1f;
+    public float jumpForce = 1;
+    public int maxJumps = 2;
+
+    private int jumpCount = 0;
 
     PlayerController pc;
 
@@ -24,7 +26,15 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            pc.jump(jumpForce);
+            if (pc.isGrounded()) {
+                jumpCount = 0;
+            }
+
+            if (jumpCount < maxJumps)
+            {
+                pc.jump(jumpForce);
+                jumpCount++;
+            }
         }
     }
 }
